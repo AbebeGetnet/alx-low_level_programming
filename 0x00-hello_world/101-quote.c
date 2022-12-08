@@ -1,12 +1,10 @@
 #include <stdio.h>
 #include <unistd.h>
-
-
 /*
- * main - Entry
+ * main - En
  * 
- *
  * Return: 1
+ *
  */
 int main(void)
 {
