@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 /*
- * main - En
- * 
+ * main - Enntry point
  * Return: 1
  *
  */
