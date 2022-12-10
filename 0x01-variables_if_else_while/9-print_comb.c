@@ -3,7 +3,7 @@
 /*
  * main print number digits
  *
- * return : always (success)
+ *turn : always (success)
  */
 int main(void)
 {
@@ -13,7 +13,7 @@ int main(void)
 	{
 		putchar(n);
 
-		if (c != '9')
+		if (n != '9')
 		{
 			putchar(',');
 			putchar(' ');
