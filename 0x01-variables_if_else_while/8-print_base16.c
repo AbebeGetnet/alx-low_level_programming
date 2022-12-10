@@ -6,24 +6,14 @@
  */
 int main(void)
 {
-	char b;
+	char alpha = '0';
+	int i;
 
-	for (b = '0'; b <= 9; b++)
-	{
-		putchar(b);
-	}
-
-	for (b = 'a'; b <= 'z'; b++)
-	{
-		putchar(b);
-	}
-
-	for (b = 'a'; b <= 'f'; b++)
-	{
-		putchar(b);
-	}
-
+	for (i = 0; i <= 9; i++, alpha++)
+		putchar(alpha);
+	alpha = 'a';
+	for (i = 0; i <= 5; i++, alpha++)
+		putchar(alpha);
 	putchar('\n');
-
 	return (0);
 }
