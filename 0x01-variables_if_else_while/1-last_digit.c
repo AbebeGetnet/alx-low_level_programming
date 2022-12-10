@@ -2,12 +2,12 @@
 #include <time.h>
 #include <stdio.h>
 
-/*
+/**
+ * main - a simple program to print the last digit of a number,
+ * and whether it is greater than 6, between 6 and 0, or less than zero
  *
- * main - Prints a text according number
- *
- * Return: Always (Success)
- */
+ * Return: 0 on success
+ **/
 int main(void)
 {
 	int n, lastd;
