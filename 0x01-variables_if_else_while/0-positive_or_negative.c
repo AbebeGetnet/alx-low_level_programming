@@ -3,10 +3,10 @@
 #include <stdio.h>
 
 /**
- * main : detect the inputs number as negative and positive
+ * main - print whether a random number is positive, negative or zero
  *
- * Return: always 0 (success)
- */
+ * Return: 0 on success
+ **/
 int main(void)
 {
 	int n;
