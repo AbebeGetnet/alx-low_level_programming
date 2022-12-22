@@ -1,35 +1,27 @@
 #include "main.h"
 
+#define ROT13IN  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+#define ROT13OUT "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"
+
 /**
- * rot13 - function with 1 argument
- * @str: char type pointer argument
+ * rot13 - encodes a string in rot13
+ * @s: the string to encode
  *
- * Description: encodes rot13 with a string
- * Return: string value
+ * Return: char pointer
  */
-char *rot13(char *str)
+char *rot13(char *s)
 {
-	char *input, *output;
-	int count, count2;
+	char *ret = s, *rot13in = ROT13IN, *rot13out = ROT13OUT;
+	int i = 0;
 
-
-	input = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	output = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
-	count = 0;
-
-	while (str[count] != '\0'
+	for (; *s; s++)
 	{
-		count2 = 0
-		while (input[count2] != '\0')
-		{
-			if (str[count] == input[count2])
+		for (i = 0; rot13in[i]; i++)
+			if (*s == rot13in[i])
 			{
-				str[count] = output[count2];
+				*s = rot13out[i];
 				break;
 			}
-			count2++;
-		}
-		count++;
 	}
-	return (str);
+	return (ret);
 }
