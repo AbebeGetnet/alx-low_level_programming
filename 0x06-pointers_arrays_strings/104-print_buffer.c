@@ -1,33 +1,44 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
- * infinite_add - function with 4arguments
-
- * @n1: char type pointer argument
- * @n2: char type pointer argument
- * @r: char type pointer argument
- * @size_r: int type argument
+ * print_buffer- prints string buffer
+ * @b: the buffe
+ * @size: size of buffer to prin
  *
- * Description: adds two numbers from string
- * Return: sum of two integers
+ * Return: void
  */
-char *infinite_add(char *n1, char *n2, char *r, int size_r)
+void print_buffer(char *b, int size)
 {
-	int count, count2;
+	int o = 0, i, j;
 
-	while (n1[count] != '\0')
-		count++;
-	while (n2[count2] != '\0')
-		count2++;
-
-	*r = *(r + size_r);
-	while (n1[count] > 0 || n1[count2] > 0)	
-		if (n1[count] + n2[count2] > 0)
-			*r = n1[count - 1] + n2[count2 - 1] + 1;
-		else
-			*r = n1[count] + n2[count2];
-		count--;
-		count2--;
+	if (size <= 0)
+	{
+		printf("\n");
+		return;
 	}
-	return (r);
+	while (o < size)
+	{
+		j = size - o < 10 ? size - o : 10;
+		printf("%08x: ", o);
+		for (i = 0; i < 10; i++)
+		{
+			if (i < j)
+				printf("%02x", *(b + o + i));
+			else
+				printf("  ");
+			if (i % 2)
+				printf(" ");
+		}
+		for (i = 0; i < j; i++)
+		{
+			int c = *(b + o + i);
+
+			if (c < 32 || c > 132)
+				c = '.';
+			printf("%c", c);
+		}
+		printf("\n");
+		o += 10;
+	}
 }
