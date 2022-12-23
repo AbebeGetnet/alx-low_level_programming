@@ -1,20 +1,21 @@
 #include <stdio.h>
 
+#include <stdlib.h>
+
+#include <time.h>
+
 /**
- *maint :print integers from 0 to 9
+ * main - Entry poin
  *
- * Return : always (success)
+ * Return: Always 0 (Success)
  */
 int main(void)
 {
-	char n;
+	int i;
 
-	for (n = '0'; n <= '9'; n++)
-	{
-		putchar(n);
-	}
-
-	putchar('\n');
+	for (i = 0; i < 10; i++)
+		printf("%d", i);
+		printf("\n");
 
 	return (0);
 }
