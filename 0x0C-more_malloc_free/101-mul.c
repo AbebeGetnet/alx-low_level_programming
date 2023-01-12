@@ -26,7 +26,6 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 /**
  * _strdigit - check if string `s' is composed only of digits
  * @s: string to check
- 
  * Return: 1 if true, 0 if false
  */
 int _strdigit(char *s)
