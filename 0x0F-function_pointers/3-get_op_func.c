@@ -1,12 +1,13 @@
-#include "3-calc.h"
 #include <stdio.h>
+#include "3-calc.h"
 #include <stdlib.h>
-/**
- * get_op_func - Entry function
- * @s: operator
- * Return: function
- */
 
+/**
+ * get_op_func - check if the operator is valid
+ * @s: value input operator
+ *
+ * Return: 0 if false, something else otherwise.
+ */
 int (*get_op_func(char *s))(int, int)
 {
 	op_t ops[] = {
@@ -20,16 +21,12 @@ int (*get_op_func(char *s))(int, int)
 	int i;
 
 	i = 0;
-
-	while (i < 5)
+	while (i < 6)
 	{
-		if (*ops[i].op == *s && s[1] == 0)
-		{
+		if (ops[i].op[0] == s[0])
 			return (ops[i].f);
-		}
-		i++;
+	i++;
 	}
 	printf("Error\n");
 	exit(99);
-
 }
