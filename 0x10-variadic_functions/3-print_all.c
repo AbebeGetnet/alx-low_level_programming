@@ -1,94 +1,84 @@
 #include <stdio.h>
-#include "variadic_functions.h"
+#include <stdlib.h>
 #include <stdarg.h>
+#include "variadic_functions.h"
 
 /**
- * op_c - Print character .
- * @form: name va_list
- *
- * Return: Nothing.
+ * print_string - Print the string
+ * @args: Where the string is
  */
-void op_c(va_list form)
+void print_string(va_list args)
 {
-	printf("%c", va_arg(form, int));
-}
-/**
- * op_i - Print Integer
- * @form: name va_list
- *
- * Return: Nothing.
- */
-void op_i(va_list form)
-{
-	printf("%i", va_arg(form, int));
-}
-/**
- * op_f - print FLoat numbers
- *@form: name of va_list
- *
- * Return: Nothing.
- */
-void op_f(va_list form)
-{
-	printf("%f", va_arg(form, double));
-}
-/**
- * op_s -print string
- * @form: name va_list
- *
- * Return: Nothing.
- */
-void op_s(va_list form)
-{
-	char *str;
+	char *string;
 
-	str = va_arg(form, char *);
-	if (str == NULL)
-	{
-		printf("(nil)");
-		return;
-	}
-	printf("%s", str);
+	string = va_arg(args, char *);
+	if (string == NULL)
+		string = "(nil)";
+	printf("%s",  string);
 }
+
 /**
- * print_all - check the code for Holberton School students.
- * @format: number of arguments in character format
- *
- * Return: Nothing.
+ * print_char - Print the char
+ * @args: Where the char is
+ */
+void print_char(va_list args)
+{
+	printf("%c", va_arg(args, int));
+}
+
+/**
+ * print_int - Print the int
+ * @args: Where the int is
+ */
+void print_int(va_list args)
+{
+	printf("%d", va_arg(args, int));
+}
+
+
+/**
+ * print_float - Print the float
+ * @args: Where the float is
+ */
+void print_float(va_list args)
+{
+	printf("%f", va_arg(args, double));
+}
+
+/**
+ * print_all - Print any type of given argument
+ * @format: List of types of arguments being passed
  */
 void print_all(const char * const format, ...)
 {
-	va_list all;
-	unsigned int i, j;
-	char *separator = "";
+	va_list args;
+	char *sep;
+	print_form_t print_form[] = {
+		{"c", print_char},
+		{"i", print_int},
+		{"f", print_float},
+		{"s", print_string}
+	};
+	int i, j;
 
-	f ops[] = {
-
-		{"c", op_c},
-		{"i", op_i},
-		{"f", op_f},
-		{"s", op_s},
-		};
-
-	va_start(all, format);
+	va_start(args, format);
 	i = 0;
-	while (format && format[i])
+	sep = "";
+	while (format != NULL && format[i] != '\0')
 	{
 		j = 0;
 		while (j < 4)
 		{
-			if (ops[j].op[0] == format[i])
+			if (*print_form[j].c == format[i])
 			{
-				printf("%s", separator);
-				separator = ", ";
-				ops[j].f(all);
-				break;
+				printf("%s", sep);
+				print_form[j].f(args, sep);
+				sep = ", ";
 			}
 			j++;
 		}
-	i++;
+		i++;
 	}
-
 	printf("\n");
-	va_end(all);
+	va_end(args);
 }
