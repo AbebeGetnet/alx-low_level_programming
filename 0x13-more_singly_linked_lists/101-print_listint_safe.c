@@ -1,37 +1,58 @@
 #include "lists.h"
+#include <stdio.h>
 
 /**
- * print_listint_safe - print a list
- * @head: linked list of type listint_t
+ * print_listint_safe - function that prints a listint_t linked list.
+ * @head: pointer to head of a list.
  *
- * Return: number of nodes in list, exit with status 98 if function fails
+ * Return: Length of list (INT)
  */
-
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *current, *runner;
-	size_t c_i, r_i;
 
-	current = head;
-	c_i = 0;
+	const listint_t *slow_p = head , *fast_p = head;
+	size_t ele = 0;
+	int is_loop = 0;
 
-	while (current != NULL)
+	while (slow_p && fast_p && fast_p->next)
 	{
-		runner = head;
-		for (r_i = 0; r_i < c_i; r_i++)
+		if (!(fast_p->next->next))
+			break;
+		slow_p = slow_p->next;
+		fast_p = fast_p->next->next;
+		if (slow_p == fast_p)
 		{
-			if (runner == current)
-			{
-				printf("-> [%p] %d\n", (void *)current, current->n);
-				return (c_i);
-			}
-
-			runner = runner->next;
+			slow_p = slow_p->next;
+			is_loop = 1;
+			break;
 		}
-		printf("[%p] %d\n", (void *)current, current->n);
-		current = current->next;
-		c_i++;
 	}
 
-	return (c_i);
+	if (!is_loop)
+	{
+		while (head)
+		{
+			ele++;
+			printf("[%p] %d\n", (void *)head, head->n);
+			head = head->next;
+		}
+		return (ele);
+	}
+
+	while (head)
+	{
+		ele++;
+		if (head == slow_p)
+		{
+			printf("[%p] %d\n", (void *)head, head->n);
+			printf("-> [%p] %d\n", (void *)head, head->next->n);
+			exit(98);
+		}
+
+		printf("[%p] %d\n", (void *)head, head->n);
+		head = head->next;
+	}
+	return (0);
 }
+
+
